@@ -61,9 +61,9 @@
 														"$ref": "AAAAAAF4/oTGC8mkclk="
 													},
 													"font": "Arial;13;0",
-													"left": 24.72998046875,
+													"left": 22.55908203125,
 													"top": 13,
-													"width": 73.033203125,
+													"width": 68.81201171875,
 													"height": 13,
 													"text": "DangBaiViet"
 												},
@@ -76,7 +76,7 @@
 													"font": "Arial;13;1",
 													"left": 5,
 													"top": 13,
-													"width": 14.72998046875,
+													"width": 12.55908203125,
 													"height": 13,
 													"text": "sd"
 												}
@@ -2910,7 +2910,7 @@
 											"top": 167,
 											"width": 105.853515625,
 											"height": 13,
-											"text": "+addText(): String",
+											"text": "+getText(): String",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4827,7 +4827,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF5dkOMGdO5yE4="
 							},
-							"name": "addText",
+							"name": "getText",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -4950,7 +4950,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF5dkgn19Sk3qw="
 									},
-									"name": "String text"
+									"name": "String text",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -4958,7 +4959,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF5dkgn19Sk3qw="
 									},
-									"name": "List listPicture"
+									"name": "List listPicture",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -4966,7 +4968,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF5dkgn19Sk3qw="
 									},
-									"name": "List listVideo"
+									"name": "List listVideo",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -5012,7 +5015,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF5dkwZXtTKMLM="
 									},
-									"name": "Post p"
+									"name": "Post p",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -5106,7 +5110,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF5dkh0qdSsNig="
 									},
-									"name": "String text"
+									"name": "String text",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -5114,7 +5119,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF5dkh0qdSsNig="
 									},
-									"name": "List listPicture"
+									"name": "List listPicture",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -5122,7 +5128,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF5dkh0qdSsNig="
 									},
-									"name": "List listVideo"
+									"name": "List listVideo",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
