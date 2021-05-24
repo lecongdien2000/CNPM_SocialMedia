@@ -541,8 +541,8 @@
 										"$ref": "AAAAAAF5jIScahj9G0Y="
 									},
 									"font": "Arial;13;1",
-									"left": 264,
-									"top": 541,
+									"left": 136,
+									"top": 453,
 									"width": 200.5234375,
 									"height": 13,
 									"text": "Comment"
@@ -567,8 +567,8 @@
 												"$ref": "AAAAAAF5jIS05xkICTw="
 											},
 											"font": "Arial;13;0",
-											"left": 269,
-											"top": 564,
+											"left": 141,
+											"top": 476,
 											"width": 190.5234375,
 											"height": 13
 										},
@@ -582,8 +582,8 @@
 												"$ref": "AAAAAAF5jITMtRkPj80="
 											},
 											"font": "Arial;13;0",
-											"left": 269,
-											"top": 579,
+											"left": 141,
+											"top": 491,
 											"width": 190.5234375,
 											"height": 13
 										},
@@ -597,8 +597,8 @@
 												"$ref": "AAAAAAF5jITnBxkW8ac="
 											},
 											"font": "Arial;13;0",
-											"left": 269,
-											"top": 594,
+											"left": 141,
+											"top": 506,
 											"width": 190.5234375,
 											"height": 13
 										},
@@ -612,8 +612,8 @@
 												"$ref": "AAAAAAF5jIUw9xkdBII="
 											},
 											"font": "Arial;13;0",
-											"left": 269,
-											"top": 609,
+											"left": 141,
+											"top": 521,
 											"width": 190.5234375,
 											"height": 13
 										},
@@ -627,22 +627,22 @@
 												"$ref": "AAAAAAF5jIVgxBkksdg="
 											},
 											"font": "Arial;13;0",
-											"left": 269,
-											"top": 624,
+											"left": 141,
+											"top": 536,
 											"width": 190.5234375,
 											"height": 13
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 264,
-									"top": 559,
+									"left": 136,
+									"top": 471,
 									"width": 200.5234375,
 									"height": 83
 								}
 							],
 							"font": "Arial;13;0",
-							"left": 264,
-							"top": 536,
+							"left": 136,
+							"top": 448,
 							"width": 200.5234375,
 							"height": 106,
 							"nameLabel": {
