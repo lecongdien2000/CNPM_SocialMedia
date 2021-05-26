@@ -47,6 +47,17 @@ public class Post {
      */
     public List<Share> shares;
 
+
+
+
+
+
+
+
+
+
+
+
     /**
      * @param text 
      * @param listPicture 

@@ -37,6 +37,10 @@ public class User {
      */
     public Date dateCreated;
 
+
+
+
+
     /**
      * @param userID 
      * @param postID
