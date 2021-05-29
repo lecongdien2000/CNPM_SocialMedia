@@ -375,9 +375,9 @@
 										"$ref": "AAAAAAF5jIMLHhjF/Vw="
 									},
 									"font": "Arial;13;1",
-									"left": 360,
+									"left": 328,
 									"top": 389,
-									"width": 158.6162109375,
+									"width": 179.55712890625,
 									"height": 13,
 									"text": "Like"
 								},
@@ -401,9 +401,9 @@
 												"$ref": "AAAAAAF5jIMchxjQd70="
 											},
 											"font": "Arial;13;0",
-											"left": 365,
+											"left": 333,
 											"top": 412,
-											"width": 148.6162109375,
+											"width": 169.55712890625,
 											"height": 13
 										},
 										{
@@ -416,23 +416,23 @@
 												"$ref": "AAAAAAF5jIM6DxjXLb4="
 											},
 											"font": "Arial;13;0",
-											"left": 365,
+											"left": 333,
 											"top": 427,
-											"width": 148.6162109375,
+											"width": 169.55712890625,
 											"height": 13
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 360,
+									"left": 328,
 									"top": 407,
-									"width": 158.6162109375,
+									"width": 179.55712890625,
 									"height": 38
 								}
 							],
 							"font": "Arial;13;0",
-							"left": 360,
+							"left": 328,
 							"top": 384,
-							"width": 158.6162109375,
+							"width": 179.55712890625,
 							"height": 61,
 							"nameLabel": {
 								"$ref": "AAAAAAF5jIMLHhjGILE="
@@ -460,7 +460,7 @@
 									"font": "Arial;13;1",
 									"left": 536,
 									"top": 389,
-									"width": 201.93896484375,
+									"width": 222.8798828125,
 									"height": 13,
 									"text": "Shared"
 								},
@@ -486,7 +486,7 @@
 											"font": "Arial;13;0",
 											"left": 541,
 											"top": 412,
-											"width": 191.93896484375,
+											"width": 212.8798828125,
 											"height": 13
 										},
 										{
@@ -501,21 +501,21 @@
 											"font": "Arial;13;0",
 											"left": 541,
 											"top": 427,
-											"width": 191.93896484375,
+											"width": 212.8798828125,
 											"height": 13
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 536,
 									"top": 407,
-									"width": 201.93896484375,
+									"width": 222.8798828125,
 									"height": 38
 								}
 							],
 							"font": "Arial;13;0",
 							"left": 536,
 							"top": 384,
-							"width": 201.93896484375,
+							"width": 222.8798828125,
 							"height": 61,
 							"nameLabel": {
 								"$ref": "AAAAAAF5jINo5BjiqBQ="
@@ -541,8 +541,8 @@
 										"$ref": "AAAAAAF5jIScahj9G0Y="
 									},
 									"font": "Arial;13;1",
-									"left": 136,
-									"top": 453,
+									"left": 304,
+									"top": 53,
 									"width": 200.5234375,
 									"height": 13,
 									"text": "Comment"
@@ -567,8 +567,8 @@
 												"$ref": "AAAAAAF5jIS05xkICTw="
 											},
 											"font": "Arial;13;0",
-											"left": 141,
-											"top": 476,
+											"left": 309,
+											"top": 76,
 											"width": 190.5234375,
 											"height": 13
 										},
@@ -582,8 +582,8 @@
 												"$ref": "AAAAAAF5jITMtRkPj80="
 											},
 											"font": "Arial;13;0",
-											"left": 141,
-											"top": 491,
+											"left": 309,
+											"top": 91,
 											"width": 190.5234375,
 											"height": 13
 										},
@@ -597,8 +597,8 @@
 												"$ref": "AAAAAAF5jITnBxkW8ac="
 											},
 											"font": "Arial;13;0",
-											"left": 141,
-											"top": 506,
+											"left": 309,
+											"top": 106,
 											"width": 190.5234375,
 											"height": 13
 										},
@@ -612,8 +612,8 @@
 												"$ref": "AAAAAAF5jIUw9xkdBII="
 											},
 											"font": "Arial;13;0",
-											"left": 141,
-											"top": 521,
+											"left": 309,
+											"top": 121,
 											"width": 190.5234375,
 											"height": 13
 										},
@@ -627,22 +627,22 @@
 												"$ref": "AAAAAAF5jIVgxBkksdg="
 											},
 											"font": "Arial;13;0",
-											"left": 141,
-											"top": 536,
+											"left": 309,
+											"top": 136,
 											"width": 190.5234375,
 											"height": 13
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 136,
-									"top": 471,
+									"left": 304,
+									"top": 71,
 									"width": 200.5234375,
 									"height": 83
 								}
 							],
 							"font": "Arial;13;0",
-							"left": 136,
-							"top": 448,
+							"left": 304,
+							"top": 48,
 							"width": 200.5234375,
 							"height": 106,
 							"nameLabel": {
@@ -742,7 +742,11 @@
 							},
 							"name": "userID",
 							"type": "varchar",
-							"length": "10"
+							"length": "10",
+							"foreignKey": true,
+							"referenceTo": {
+								"$ref": "AAAAAAF5jH4cZxhRpqE="
+							}
 						},
 						{
 							"_type": "ERDColumn",
@@ -762,7 +766,11 @@
 							},
 							"name": "mediaID",
 							"type": "varchar",
-							"length": "10"
+							"length": "10",
+							"foreignKey": true,
+							"referenceTo": {
+								"$ref": "AAAAAAF5jIKwBxi133M="
+							}
 						},
 						{
 							"_type": "ERDColumn",
@@ -825,7 +833,11 @@
 							"name": "postID",
 							"type": "varchar",
 							"length": "10",
-							"primaryKey": true
+							"primaryKey": true,
+							"foreignKey": true,
+							"referenceTo": {
+								"$ref": "AAAAAAF5jIAcrhiFQ5Q="
+							}
 						},
 						{
 							"_type": "ERDColumn",
@@ -836,7 +848,11 @@
 							"name": "userID",
 							"type": "varchar",
 							"length": "10",
-							"primaryKey": true
+							"primaryKey": true,
+							"foreignKey": true,
+							"referenceTo": {
+								"$ref": "AAAAAAF5jH4cZxhRpqE="
+							}
 						}
 					]
 				},
@@ -857,7 +873,11 @@
 							"name": "taggedPostID",
 							"type": "varchar",
 							"length": "10",
-							"primaryKey": true
+							"primaryKey": true,
+							"foreignKey": true,
+							"referenceTo": {
+								"$ref": "AAAAAAF5jIAcrhiFQ5Q="
+							}
 						},
 						{
 							"_type": "ERDColumn",
@@ -868,7 +888,11 @@
 							"name": "postID",
 							"type": "varchar",
 							"length": "10",
-							"primaryKey": true
+							"primaryKey": true,
+							"foreignKey": true,
+							"referenceTo": {
+								"$ref": "AAAAAAF5jIAcrhiFQ5Q="
+							}
 						}
 					]
 				},
@@ -899,7 +923,11 @@
 							},
 							"name": "userID",
 							"type": "varchar",
-							"length": "10"
+							"length": "10",
+							"foreignKey": true,
+							"referenceTo": {
+								"$ref": "AAAAAAF5jH4cZxhRpqE="
+							}
 						},
 						{
 							"_type": "ERDColumn",
@@ -909,7 +937,11 @@
 							},
 							"name": "postID",
 							"type": "varchar",
-							"length": "10"
+							"length": "10",
+							"foreignKey": true,
+							"referenceTo": {
+								"$ref": "AAAAAAF5jIAcrhiFQ5Q="
+							}
 						},
 						{
 							"_type": "ERDColumn",
