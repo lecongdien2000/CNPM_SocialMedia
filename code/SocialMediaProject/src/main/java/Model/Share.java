@@ -22,4 +22,7 @@ public class Share {
      */
     public Post originPost;
 
+
+
+
 }

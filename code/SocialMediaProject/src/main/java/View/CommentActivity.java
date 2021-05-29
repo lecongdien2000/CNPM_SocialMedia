@@ -1,4 +1,7 @@
-package Model;
+package View;
+
+import Model.Comment;
+
 import java.util.*;
 
 /**
@@ -18,6 +21,7 @@ public class CommentActivity {
     public void show(String postID) {
         // TODO implement here
     }
+
 
 
     /**

@@ -4,7 +4,7 @@ import java.util.*;
 /**
  * 
  */
-public class User {
+public class User implements IUser {
 
     /**
      * Default constructor
@@ -38,6 +38,15 @@ public class User {
     public Date dateCreated;
 
     /**
+     * 
+     */
+    public List<User> friends;
+
+
+
+
+
+    /**
      * @param userID 
      * @param postID
      */
@@ -50,6 +59,13 @@ public class User {
      * @param postID
      */
     public void sharedNotify(String userID, String postID) {
+        // TODO implement here
+    }
+
+    /**
+     * 
+     */
+    public void updateNotif() {
         // TODO implement here
     }
 

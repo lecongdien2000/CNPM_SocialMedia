@@ -1,4 +1,4 @@
-package Model;
+package Controller;
 import java.util.*;
 
 /**
@@ -65,12 +65,7 @@ public class Controller {
         // TODO implement here
     }
 
-    /**
-     * @param String text 
-     * @param List listPicture 
-     * @param List listVideo 
-     * @return
-     */
+
     public boolean post(String text, List<String> listPicture, List<String> listVideo) {
         // TODO implement here
         return false;

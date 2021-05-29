@@ -4,7 +4,7 @@ import java.util.*;
 /**
  * 
  */
-public class Post {
+public class Post implements IPost {
 
     /**
      * Default constructor
@@ -48,6 +48,22 @@ public class Post {
     public List<Share> shares;
 
     /**
+     * 
+     */
+    public List<User> taggedFriends;
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
      * @param text 
      * @param listPicture 
      * @param listVideo 
@@ -62,6 +78,27 @@ public class Post {
      * @param post
      */
     public void createPost(String text, Post post) {
+        // TODO implement here
+    }
+
+    /**
+     * 
+     */
+    public void notif() {
+        // TODO implement here
+    }
+
+    /**
+     * @param user
+     */
+    public void addTaggedFriend(IUser user) {
+        // TODO implement here
+    }
+
+    /**
+     * @param user
+     */
+    public void removeTaggedFriend(IUser user) {
         // TODO implement here
     }
 

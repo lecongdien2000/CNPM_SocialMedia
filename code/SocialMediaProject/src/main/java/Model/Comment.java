@@ -13,6 +13,38 @@ public class Comment {
     }
 
     /**
+     * 
+     */
+    public String id;
+
+    /**
+     * 
+     */
+    public User user;
+
+    /**
+     * 
+     */
+    public Post post;
+
+    /**
+     * 
+     */
+    public Content content;
+
+    /**
+     * 
+     */
+    public Date date;
+
+
+
+
+
+
+
+
+    /**
      * @param userID 
      * @param postID 
      * @param text 

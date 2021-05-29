@@ -1,4 +1,7 @@
-package Model;
+package Database;
+import Model.Comment;
+import Model.Post;
+
 import java.util.*;
 
 /**
@@ -35,9 +38,7 @@ public class Database {
         // TODO implement here
     }
 
-    /**
-     * @param Post p
-     */
+
     public void insertPost(Post p) {
         // TODO implement here
     }
