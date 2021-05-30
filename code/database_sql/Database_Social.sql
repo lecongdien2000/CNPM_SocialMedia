@@ -1,37 +1,55 @@
-CREATE TABLE user (
+CREATE TABLE User (
     userID VARCHAR(10) NOT NULL,
     fullName VARCHAR(30) NOT NULL,
 		username VARCHAR(15) NOT NULL,
 		password VARCHAR(15) NOT NULL,
 		dateCreated DATETIME NOT NULL,
-		PRIMARY KEY (id)
+		PRIMARY KEY (userID)
 );
 
-CREATE TABLE post (
+CREATE TABLE Media (
+    mediaID VARCHAR(10) NOT NULL,
+    mediaPath VARCHAR(100) NOT NULL,
+		PRIMARY KEY (mediaID,mediaPath)
+);
+
+CREATE TABLE Post (
     postID VARCHAR(10) NOT NULL,
     userID VARCHAR(10) NOT NULL,
 		text VARCHAR(500),
-		mediaID VARCHAR(10),
+		mediaID VARCHAR(10) NOT NULL,
 		dateCreated DATETIME NOT NULL,
-		PRIMARY KEY (id)
+		PRIMARY KEY (postID),
+		FOREIGN KEY (userID) REFERENCES User(userID),
+		FOREIGN KEY (mediaID) REFERENCES Media(mediaID)
 );
 
-CREATE TABLE media (
-    mediaID VARCHAR(10) NOT NULL,
-    mediaPath VARCHAR(100) NOT NULL,
-		PRIMARY KEY (id)
-);
 
-CREATE TABLE like (
+
+CREATE TABLE Liked (
     postID VARCHAR(10) NOT NULL,
 		userID VARCHAR(10) NOT NULL,
-		PRIMARY KEY (id)
+		PRIMARY KEY (postID,userID),
+		FOREIGN KEY (postID) REFERENCES Post(postID),
+		FOREIGN KEY (userID) REFERENCES User(userID)
 );
 
-CREATE TABLE shared (
+CREATE TABLE Shared (
     taggedPostID VARCHAR(10) NOT NULL,
 		postID VARCHAR(10) NOT NULL,
-		PRIMARY KEY (id)
+		PRIMARY KEY (taggedPostID,postID),
+		FOREIGN KEY (postID) REFERENCES Post(postID)
+);
+
+CREATE TABLE Comment (
+    commentID VARCHAR(10) NOT NULL,
+		userID VARCHAR(10) NOT NULL,
+		postID VARCHAR(10) NOT NULL,
+		text VARCHAR(500) NOT NULL,
+		dateCreated DATETIME,
+		PRIMARY KEY (commentID),
+		FOREIGN KEY (userID) REFERENCES User(userID),
+		FOREIGN KEY (postID) REFERENCES Post(postID)
 );
 
 
