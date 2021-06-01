@@ -1,3 +1,4 @@
+CREATE DATABASE database_social;
 CREATE TABLE User (
     userID VARCHAR(10) NOT NULL,
     fullName VARCHAR(30) NOT NULL,
@@ -54,6 +55,4 @@ CREATE TABLE Comment (
 
 
 
-INSERT INTO user VALUES (userID, fullName, username, password, dateCreated);
-
-INSERT INTO post VALUES (postID, userID, text, mediaID, dateCreated);
+INSERT INTO user VALUES ("abc", "Nguyễn Văn Nam", "abc", "123456", "2020-03-28");
