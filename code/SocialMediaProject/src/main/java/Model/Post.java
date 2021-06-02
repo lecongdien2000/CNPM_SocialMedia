@@ -10,6 +10,10 @@ public class Post implements IPost {
      * Default constructor
      */
     public Post() {
+        id = "-1";
+        user = new User();
+        content = new Content();
+        date = new Date(1,1,2000);
     }
 
     /**

@@ -6,11 +6,7 @@ import java.util.*;
  */
 public class User implements IUser {
 
-    /**
-     * Default constructor
-     */
-    public User() {
-    }
+
 
     /**
      * 
@@ -43,6 +39,33 @@ public class User implements IUser {
     public List<User> friends;
 
 
+
+
+    public User(){
+        //default value
+        this.id = "-1";
+        this.dateCreated = new Date(1,1,2000);
+        this.username = "";
+        this.password="";
+    }
+
+    public User(String id, String fullname, String username, String password, Date dateCreated) {
+        this.username = username;
+        this.password = password;
+        this.id = id;
+        this.dateCreated = dateCreated;
+        this.fullName = fullname;
+    }
+
+
+
+    public String getFullname() {
+        return fullName;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullName = fullname;
+    }
 
 
 

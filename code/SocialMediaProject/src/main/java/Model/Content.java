@@ -10,6 +10,8 @@ public class Content {
      * Default constructor
      */
     public Content() {
+        images = new ArrayList<>();
+        videos = new ArrayList<>();
     }
 
     /**

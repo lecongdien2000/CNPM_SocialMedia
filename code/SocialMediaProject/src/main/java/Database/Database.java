@@ -1,7 +1,7 @@
 package Database;
 import Model.Comment;
 import Model.Post;
-
+import Database.Data.*;
 import java.util.*;
 
 /**
@@ -40,7 +40,8 @@ public class Database {
 
 
     public void insertPost(Post p) {
-        // TODO implement here
+        checkData(p);
+        PostsData.insertPost(p);
     }
 
     /**
