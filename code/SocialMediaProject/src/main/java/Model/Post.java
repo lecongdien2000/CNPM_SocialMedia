@@ -1,6 +1,6 @@
 package Model;
 import java.util.*;
-
+import Database.*;
 /**
  * 
  */
@@ -10,7 +10,7 @@ public class Post implements IPost {
      * Default constructor
      */
     public Post() {
-        id = "-1";
+        id = Database.generateID();
         user = new User();
         content = new Content();
         date = new Date(1,1,2000);

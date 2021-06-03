@@ -3,7 +3,11 @@ import Database.ConnectionDB;
 import Model.*;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PostsData {
 
@@ -45,4 +49,33 @@ public class PostsData {
             e.printStackTrace();
         }
     }
+
+
+
+    public static int getSize() {
+        List<User> result = new ArrayList<>();
+        int size =0;
+        try {
+            Statement statement = null;
+            statement = ConnectionDB.connect();
+            ResultSet rs = statement.executeQuery("SELECT * FROM post");
+            if (rs != null)
+            {
+                rs.last();
+                size = rs.getRow();
+            }
+
+            rs.close();
+            statement.close();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return size;
+    }
+
+
+
 }

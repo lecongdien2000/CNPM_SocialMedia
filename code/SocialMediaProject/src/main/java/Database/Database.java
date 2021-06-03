@@ -19,7 +19,7 @@ public class Database {
      * @param postID 
      * @return
      */
-    public List<Comment> getListComments(String postID) {
+    public static List<Comment> getListComments(String postID) {
         // TODO implement here
         return null;
     }
@@ -27,19 +27,19 @@ public class Database {
     /**
      * @param mediaPath
      */
-    public void loadMedia(String mediaPath) {
+    public static void loadMedia(String mediaPath) {
         // TODO implement here
     }
 
     /**
      * @param cmt
      */
-    public void insertComment(Comment cmt) {
+    public static void insertComment(Comment cmt) {
         // TODO implement here
     }
 
 
-    public void insertPost(Post p) {
+    public static void insertPost(Post p) {
         checkData(p);
         PostsData.insertPost(p);
     }
@@ -47,14 +47,14 @@ public class Database {
     /**
      * @param postID
      */
-    public void increaseLike(String postID) {
+    public static void increaseLike(String postID) {
         // TODO implement here
     }
 
     /**
      * @param postID
      */
-    public void decreaseLike(String postID) {
+    public static void decreaseLike(String postID) {
         // TODO implement here
     }
 
@@ -62,16 +62,18 @@ public class Database {
      * @param postID 
      * @return
      */
-    public Post getPost(String postID) {
-        // TODO implement here
+    public static Post getPost(String postID) {
         return null;
     }
 
     /**
      * @param post
      */
-    public void checkData(Post post) {
+    public static void checkData(Post post) {
         // TODO implement here
+    }
+    public static String generateID(){
+        return PostsData.getSize() + "";
     }
 
 }
