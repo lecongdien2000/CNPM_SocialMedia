@@ -92,4 +92,13 @@ public class Date {
     public void setMin(int min) {
         this.min = min;
     }
+
+    @Override
+    public String toString() {
+        return "Date{" +
+                "day=" + day +
+                ", month=" + month +
+                ", year=" + year +
+                '}';
+    }
 }

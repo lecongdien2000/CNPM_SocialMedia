@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class PostsData {
@@ -77,5 +78,35 @@ public class PostsData {
     }
 
 
-
+    public static Post getPost(String postID) {
+        List<String> values = new ArrayList<>();
+        values.add(postID);
+        return getPreparedDataQuery("SELECT * FROM post WHERE postID like ?", values).get(postID);
+    }
+    public static HashMap<String, Post> getPreparedDataQuery(String query, List<String> values){
+        HashMap<String, Post> postResultList = new HashMap<>();
+        try {
+            PreparedStatement preStat = null;
+            preStat = ConnectionDB.connect(query);
+            for(int i = 0; i < values.size(); i++){
+                preStat.setString(i+1, values.get(i));
+            }
+            ResultSet rs = preStat.executeQuery();
+            while(rs.next()){
+                Post post = new Post();
+                post.id = rs.getString("postID");
+                post.user = UsersData.getUsers(rs.getString("userID"));
+                post.content.text = rs.getString("text");
+                post.content.images = MediasData.getImgs(rs.getString("mediaID"));
+                post.content.videos = MediasData.getVideos(rs.getString("mediaID"));
+                post.date = Date.convertSqlStringToDate(rs.getDate("dateCreated").toString());
+                postResultList.put(post.id, post);
+            }
+            rs.close();
+            preStat.close();
+        } catch (ClassNotFoundException|SQLException e) {
+            e.printStackTrace();
+        }
+        return postResultList;
+    }
 }

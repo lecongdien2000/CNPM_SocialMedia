@@ -5,6 +5,8 @@ import java.util.*;
  * 
  */
 public class Content {
+    public final static String[] imgTypes = {"jpg", "gif", "png"};
+    public final static String[] videoTypes = {"mp4", "3gp", "mpeg"};
 
     /**
      * Default constructor
@@ -30,6 +32,12 @@ public class Content {
     public List<String> videos;
 
 
-
-
+    @Override
+    public String toString() {
+        return "Content{" +
+                "text='" + text + '\'' +
+                ", images=" + images +
+                ", videos=" + videos +
+                '}';
+    }
 }

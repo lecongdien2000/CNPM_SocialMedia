@@ -24,7 +24,6 @@ public class UsersData {
         values.add(uname);
         values.add(pass);
         return getPreparedDataQuery("SELECT * FROM user WHERE username like ? and password like ?", values).get(uname);
-
     }
 
     public static HashMap<String, User> getPreparedDataQuery(String query, List<String> values){

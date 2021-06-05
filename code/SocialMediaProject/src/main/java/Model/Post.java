@@ -106,4 +106,13 @@ public class Post implements IPost {
         // TODO implement here
     }
 
+    @Override
+    public String toString() {
+        return "Post{" +
+                "id='" + id + '\'' +
+                ", user=" + user +
+                ", content=" + content +
+                ", date=" + date +
+                '}';
+    }
 }

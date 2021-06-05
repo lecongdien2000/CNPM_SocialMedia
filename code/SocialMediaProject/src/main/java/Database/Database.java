@@ -63,7 +63,7 @@ public class Database {
      * @return
      */
     public static Post getPost(String postID) {
-        return null;
+        return PostsData.getPost(postID);
     }
 
     /**
