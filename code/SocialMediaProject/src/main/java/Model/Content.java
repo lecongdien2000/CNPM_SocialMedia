@@ -31,7 +31,9 @@ public class Content {
      */
     public List<String> videos;
 
-
+    public boolean isEmptyMedia(){
+        return images.isEmpty()&videos.isEmpty();
+    }
     @Override
     public String toString() {
         return "Content{" +

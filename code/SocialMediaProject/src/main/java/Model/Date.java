@@ -9,7 +9,7 @@ public class Date {
     private int year;
     private int hour;
     private int min;
-
+    private int sec;
     public Date(){
 
     }
@@ -37,7 +37,7 @@ public class Date {
         String dayString = day<10? "0" + day: day + "";
         return year + "-" + monthString + "-" + dayString;
     }
-    public static Date convertSqlStringToDate(String dateString){
+    public static Date convertSqlStringToDate(String dateString, String timeString){
         StringTokenizer st = new StringTokenizer(dateString, "-");
         Date date = new Date();
         try {
@@ -47,12 +47,22 @@ public class Date {
         } catch(NumberFormatException e){
             return null;
         }
+        StringTokenizer st2 = new StringTokenizer(timeString, ":");
+        try {
+            date.setHour(Integer.parseInt(st2.nextToken()));
+            date.setMin(Integer.parseInt(st2.nextToken()));
+            date.setSec((int) Double.parseDouble(st2.nextToken()));
+        } catch(NumberFormatException e){
+            return null;
+        }
         return date;
     }
     public String convertDateToString(){
         return this.day + "/" + this.month + "/" + this.year;
     }
-
+    public String convertTimeToSqlString(){
+        return this.hour + ":" + this.min + ":" + this.sec;
+    }
     public int getDay() {
         return day;
     }
@@ -93,12 +103,27 @@ public class Date {
         this.min = min;
     }
 
+    public int getSec() {
+        return sec;
+    }
+
+    public void setSec(int sec) {
+        this.sec = sec;
+    }
+
     @Override
     public String toString() {
         return "Date{" +
                 "day=" + day +
                 ", month=" + month +
                 ", year=" + year +
+                ", hour=" + hour +
+                ", min=" + min +
+                ", sec=" + sec +
                 '}';
+    }
+
+    public String convertDateTimeToSqlString() {
+        return convertDateToSqlString() + " " + convertTimeToSqlString();
     }
 }

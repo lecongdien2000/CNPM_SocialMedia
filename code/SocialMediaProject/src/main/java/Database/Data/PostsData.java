@@ -1,11 +1,9 @@
 package Database.Data;
 import Database.ConnectionDB;
 import Model.*;
+import Model.Date;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,6 +11,8 @@ import java.util.List;
 public class PostsData {
 
     public static void insertPost(Post post){
+        boolean isEmptyMedia = post.content.isEmptyMedia();
+        if(!isEmptyMedia) insertMedia(post);
         if(post.content != null) insertMedia(post);
         try {
             PreparedStatement state1 = ConnectionDB.connect("insert into post" +
@@ -20,8 +20,11 @@ public class PostsData {
             state1.setString(1, post.id); //insert user id
             state1.setString(2, post.user.id);
             state1.setString(3, post.content.text);
-            state1.setString(4, post.id);
-            state1.setDate(5, java.sql.Date.valueOf(post.date.convertDateToSqlString()));
+            if(!isEmptyMedia)
+                state1.setString(4, post.id);
+            else
+                state1.setString(4, null);
+            state1.setTimestamp(5, java.sql.Timestamp.valueOf(post.date.convertDateTimeToSqlString()));
             state1.executeUpdate();
             state1.close();
         }catch(ClassNotFoundException| SQLException e){
@@ -99,7 +102,7 @@ public class PostsData {
                 post.content.text = rs.getString("text");
                 post.content.images = MediasData.getImgs(rs.getString("mediaID"));
                 post.content.videos = MediasData.getVideos(rs.getString("mediaID"));
-                post.date = Date.convertSqlStringToDate(rs.getDate("dateCreated").toString());
+                post.date = Date.convertSqlStringToDate(rs.getDate("dateCreated").toString(), rs.getTime("dateCreated").toString());
                 postResultList.put(post.id, post);
             }
             rs.close();

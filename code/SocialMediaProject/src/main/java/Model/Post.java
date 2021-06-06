@@ -13,7 +13,7 @@ public class Post implements IPost {
         id = Database.generateID();
         user = new User();
         content = new Content();
-        date = new Date(1,1,2000);
+        date = Date.convertSqlStringToDate(java.time.LocalDate.now().toString(), java.time.LocalTime.now().toString());
     }
 
     /**

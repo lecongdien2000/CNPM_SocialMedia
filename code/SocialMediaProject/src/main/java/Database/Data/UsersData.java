@@ -40,7 +40,7 @@ public class UsersData {
             user.setUsername(rs.getString("username"));
             user.setPassword(rs.getString("password"));
             user.setFullname(rs.getString("fullName"));
-            user.setDateCreated(Date.convertSqlStringToDate(rs.getDate("dateCreated").toString())); //return sql type///"/.;'./'
+            user.setDateCreated(Date.convertSqlStringToDate(rs.getDate("dateCreated").toString(), rs.getTime("dateCreated").toString())); //return sql type///"/.;'./'
             userResultList.put(user.getUsername(), user);
         }
 
@@ -96,7 +96,7 @@ public class UsersData {
                 user.setUsername(rs.getString("username"));
                 user.setPassword(rs.getString("password"));
                 user.setId(rs.getString("userID"));
-                user.setDateCreated(Date.convertSqlStringToDate(rs.getDate("dateCreated").toString())); //return sql type///"/.;'./'
+                user.setDateCreated(Date.convertSqlStringToDate(rs.getDate("dateCreated").toString(), rs.getTime("dateCreated").toString())); //return sql type///"/.;'./'
                 result.add(user);
             }
 
@@ -125,7 +125,7 @@ public class UsersData {
                 user.setUsername(rs.getString("username"));
                 user.setPassword(rs.getString("password"));
                 user.setId(rs.getString("userID"));
-                user.setDateCreated(Date.convertSqlStringToDate(rs.getDate("dateCreated").toString())); //return sql type///"/.;'./'
+                user.setDateCreated(Date.convertSqlStringToDate(rs.getDate("dateCreated").toString(), rs.getTime("dateCreated").toString())); //return sql type///"/.;'./'
                 result.add(user);
             }
 

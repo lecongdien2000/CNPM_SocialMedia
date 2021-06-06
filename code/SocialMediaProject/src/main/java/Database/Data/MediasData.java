@@ -14,14 +14,7 @@ import java.util.List;
 public class MediasData {
     //can't find anything
     public static List<String> getImgs(String mediaID) {
-        List<String> values = new ArrayList<>();
-        String sql = "SELECT * FROM media WHERE mediaID like "+ mediaID ;
-        sql+=" AND ( mediaPath like '%." + Content.imgTypes[0] + "'";
-        for(int i = 1; i < Content.imgTypes.length; i++){
-            sql+=" OR mediaPath like '%." + Content.imgTypes[i] + "'";
-        }
-        sql+=")";
-        return getDataQuery(sql);
+        return getFiles(mediaID, Content.imgTypes);
     }
 
     private static List<String> getDataQuery(String query) {
@@ -45,11 +38,16 @@ public class MediasData {
     }
 
     public static List<String> getVideos(String mediaID) {
+        return getFiles(mediaID, Content.videoTypes);
+    }
+
+    private static List<String> getFiles(String mediaID, String[] types){
         List<String> values = new ArrayList<>();
         String sql = "SELECT * FROM media WHERE mediaID like "+ mediaID ;
-        sql+=" AND ( mediaPath like '%." + Content.videoTypes[0] + "'";
-        for(int i = 1; i < Content.videoTypes.length; i++){
-            sql+=" OR mediaPath like '%." + Content.videoTypes[i] + "'";
+        if(types.length == 0) return getDataQuery(sql);
+        sql+=" AND ( mediaPath like '%." + types[0] + "'";
+        for(int i = 1; i < types.length; i++){
+            sql+=" OR mediaPath like '%." + types[i] + "'";
         }
         sql+=")";
         return getDataQuery(sql);
