@@ -14,7 +14,27 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/color.css">
     <link rel="stylesheet" href="css/responsive.css">
+	<script>
+		var inputs = document.querySelectorAll( '.inputfile' );
+		Array.prototype.forEach.call( inputs, function( input )
+		{
+			var label	 = input.nextElementSibling,
+					labelVal = label.innerHTML;
+			input.addEventListener( 'change', function( e )
+			{
+				var fileName = '';
+				if( this.files && this.files.length > 1 )
+					fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
+				else
+					fileName = e.target.value.split( '\\' ).pop();
 
+				if( fileName )
+					label.querySelector( 'span' ).innerHTML = fileName;
+				else
+					label.innerHTML = labelVal;
+			});
+		});
+	</script>
 </head>
 <body>
 <div class="wavy-wraper">
@@ -1498,13 +1518,13 @@
 												<li>
 													<i class="fa fa-image"></i>
 													<label class="fileContainer">
-														<input type="file">
+														<input type="file" name="file" class="inputfile" data-multiple-caption="{count} files selected" multiple />
 													</label>
 												</li>
 												<li>
 													<i class="fa fa-video-camera"></i>
 													<label class="fileContainer">
-														<input type="file">
+														<input type="file" name="file" class="inputfile" data-multiple-caption="{count} files selected" multiple />
 													</label>
 												</li>
 										
@@ -3103,7 +3123,6 @@
 	<script src="js/script.js"></script>
 	<script>
 		jQuery(document).ready(function($) {
-			
 			$('#us3').locationpicker({
 			  location: {
 			    latitude: -8.681013,
