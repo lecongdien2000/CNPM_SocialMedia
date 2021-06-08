@@ -11,25 +11,19 @@ import java.util.List;
 public class PostsData {
 
     public static void insertPost(Post post){
-        boolean isEmptyMedia = post.content.isEmptyMedia();
-        if(!isEmptyMedia) insertMedia(post);
-        if(post.content != null) insertMedia(post);
         try {
             PreparedStatement state1 = ConnectionDB.connect("insert into post" +
-                    " values(?, ?, ?, ?, ?)");
+                    " values(?, ?, ?, ?)");
             state1.setString(1, post.id); //insert user id
             state1.setString(2, post.user.id);
             state1.setString(3, post.content.text);
-            if(!isEmptyMedia)
-                state1.setString(4, post.id);
-            else
-                state1.setString(4, null);
-            state1.setTimestamp(5, java.sql.Timestamp.valueOf(post.date.convertDateTimeToSqlString()));
+            state1.setTimestamp(4, java.sql.Timestamp.valueOf(post.date.convertDateTimeToSqlString()));
             state1.executeUpdate();
             state1.close();
         }catch(ClassNotFoundException| SQLException e){
             e.printStackTrace();
         }
+        if(!post.content.isEmptyMedia()) insertMedia(post);
     }
 
     private static void insertMedia(Post post) {
@@ -41,11 +35,11 @@ public class PostsData {
         }
     }
 
-    private static void insertMedia(String mediaID, String mediaPath){
+    private static void insertMedia(String postID, String mediaPath){
         try {
             PreparedStatement state1 = ConnectionDB.connect("insert into media" +
                     " values(?, ?)");
-            state1.setString(1, mediaID); //insert user id
+            state1.setString(1, postID); //insert user id
             state1.setString(2, mediaPath);
             state1.executeUpdate();
             state1.close();
@@ -100,8 +94,8 @@ public class PostsData {
                 post.id = rs.getString("postID");
                 post.user = UsersData.getUsers(rs.getString("userID"));
                 post.content.text = rs.getString("text");
-                post.content.images = MediasData.getImgs(rs.getString("mediaID"));
-                post.content.videos = MediasData.getVideos(rs.getString("mediaID"));
+                post.content.images = MediasData.getImgs(rs.getString("postID"));
+                post.content.videos = MediasData.getVideos(rs.getString("postID"));
                 post.date = Date.convertSqlStringToDate(rs.getDate("dateCreated").toString(), rs.getTime("dateCreated").toString());
                 postResultList.put(post.id, post);
             }

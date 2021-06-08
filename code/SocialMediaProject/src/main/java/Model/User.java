@@ -139,4 +139,16 @@ public class User implements IUser {
     public void setFriends(List<User> friends) {
         this.friends = friends;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", dateCreated=" + dateCreated +
+                ", friends=" + friends +
+                '}';
+    }
 }

@@ -13,8 +13,8 @@ import java.util.List;
 
 public class MediasData {
     //can't find anything
-    public static List<String> getImgs(String mediaID) {
-        return getFiles(mediaID, Content.imgTypes);
+    public static List<String> getImgs(String postID) {
+        return getFiles(postID, Content.imgTypes);
     }
 
     private static List<String> getDataQuery(String query) {
@@ -41,9 +41,9 @@ public class MediasData {
         return getFiles(mediaID, Content.videoTypes);
     }
 
-    private static List<String> getFiles(String mediaID, String[] types){
+    private static List<String> getFiles(String postID, String[] types){
         List<String> values = new ArrayList<>();
-        String sql = "SELECT * FROM media WHERE mediaID like "+ mediaID ;
+        String sql = "SELECT * FROM media WHERE postID like "+ postID ;
         if(types.length == 0) return getDataQuery(sql);
         sql+=" AND ( mediaPath like '%." + types[0] + "'";
         for(int i = 1; i < types.length; i++){

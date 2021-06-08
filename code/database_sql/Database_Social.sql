@@ -1,4 +1,5 @@
 CREATE DATABASE database_social;
+use database_social;
 CREATE TABLE User (
     userID VARCHAR(10) NOT NULL,
     fullName VARCHAR(30) NOT NULL,
@@ -8,23 +9,21 @@ CREATE TABLE User (
 		PRIMARY KEY (userID)
 );
 
-CREATE TABLE Media (
-    mediaID VARCHAR(10) NOT NULL,
-    mediaPath VARCHAR(100) NOT NULL,
-		PRIMARY KEY (mediaID,mediaPath)
-);
-
 CREATE TABLE Post (
     postID VARCHAR(10) NOT NULL,
     userID VARCHAR(10) NOT NULL,
 		text VARCHAR(500),
-		mediaID VARCHAR(10) NOT NULL,
 		dateCreated DATETIME NOT NULL,
 		PRIMARY KEY (postID),
-		FOREIGN KEY (userID) REFERENCES User(userID),
-		FOREIGN KEY (mediaID) REFERENCES Media(mediaID)
+		FOREIGN KEY (userID) REFERENCES User(userID)
 );
 
+CREATE TABLE Media (
+    postID VARCHAR(10) NOT NULL,
+    mediaPath VARCHAR(100) NOT NULL,
+		PRIMARY KEY (postID ,mediaPath),
+		FOREIGN KEY (postID) REFERENCES Post(postID)
+);
 
 
 CREATE TABLE Liked (
@@ -55,4 +54,4 @@ CREATE TABLE Comment (
 
 
 
-INSERT INTO user VALUES ("abc", "Nguyễn Văn Nam", "abc", "123456", "2020-03-28");
+INSERT INTO user VALUES ("0", "Nguyễn Văn Nam", "abc", "123456", "2020-03-28");

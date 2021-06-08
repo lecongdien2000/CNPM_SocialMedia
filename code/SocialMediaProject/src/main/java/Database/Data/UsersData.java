@@ -13,18 +13,18 @@ import Model.*;
 public class UsersData {
 
 
-    public static User getUsers(String uname){
+    public static User getUsers(String userID){
         List<String> values = new ArrayList<>();
-        values.add(uname);
-        return getPreparedDataQuery("SELECT * FROM user WHERE username like ?", values).get(uname);
+        values.add(userID);
+        return getPreparedDataQuery("SELECT * FROM user WHERE userID like ?", values).get(userID);
     }
 
-    public static User getUsers(String uname, String pass){
-        List<String> values = new ArrayList<>();
-        values.add(uname);
-        values.add(pass);
-        return getPreparedDataQuery("SELECT * FROM user WHERE username like ? and password like ?", values).get(uname);
-    }
+//    public static User getUsers(String uname, String pass){
+//        List<String> values = new ArrayList<>();
+//        values.add(uname);
+//        values.add(pass);
+//        return getPreparedDataQuery("SELECT * FROM user WHERE username like ? and password like ?", values).get(uname);
+//    }
 
     public static HashMap<String, User> getPreparedDataQuery(String query, List<String> values){
         HashMap<String, User> userResultList = new HashMap<>();
@@ -37,11 +37,12 @@ public class UsersData {
         ResultSet rs = preStat.executeQuery();
         while(rs.next()){
             User user = new User();
+            user.setId(rs.getString("userID"));
             user.setUsername(rs.getString("username"));
             user.setPassword(rs.getString("password"));
             user.setFullname(rs.getString("fullName"));
             user.setDateCreated(Date.convertSqlStringToDate(rs.getDate("dateCreated").toString(), rs.getTime("dateCreated").toString())); //return sql type///"/.;'./'
-            userResultList.put(user.getUsername(), user);
+            userResultList.put(user.getId(), user);
         }
 
         rs.close();
@@ -52,21 +53,21 @@ public class UsersData {
         return userResultList;
     }
     //chinh lai id user xuat hien
-    public static void insertUser(User user) {
-        try {
-            PreparedStatement state1 = ConnectionDB.connect("insert into user(userID, fullName, username, password, dateCreated)" +
-                    " values(?, ?, ?, ?, ?)");
-            state1.setString(1, user.getUsername()); //insert user id
-            state1.setString(2, user.getFullname());
-            state1.setString(3, user.getUsername());
-            state1.setString(4, user.getPassword());
-            state1.setDate(5, java.sql.Date.valueOf(user.getDateCreated().convertDateToSqlString()));
-            state1.executeUpdate();
-            state1.close();
-        }catch(ClassNotFoundException|SQLException e){
-            e.printStackTrace();
-        }
-    }
+//    public static void insertUser(User user) {
+//        try {
+//            PreparedStatement state1 = ConnectionDB.connect("insert into user(userID, fullName, username, password, dateCreated)" +
+//                    " values(?, ?, ?, ?, ?)");
+//            state1.setString(1, user.getUsername()); //insert user id
+//            state1.setString(2, user.getFullname());
+//            state1.setString(3, user.getUsername());
+//            state1.setString(4, user.getPassword());
+//            state1.setDate(5, java.sql.Date.valueOf(user.getDateCreated().convertDateToSqlString()));
+//            state1.executeUpdate();
+//            state1.close();
+//        }catch(ClassNotFoundException|SQLException e){
+//            e.printStackTrace();
+//        }
+//    }
 
 //    public static void updateUser(User user) {
 //        try {
