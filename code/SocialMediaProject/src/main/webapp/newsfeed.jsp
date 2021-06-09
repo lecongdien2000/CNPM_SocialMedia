@@ -1659,6 +1659,7 @@
 										</div>
 									</div>
 								</div><!-- top stories -->
+								<!-- post list -->
 								<div class="loadMore">
 									<div class="central-meta item">
 										<div class="user-post">
