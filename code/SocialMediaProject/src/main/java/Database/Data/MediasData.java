@@ -2,9 +2,9 @@ package Database.Data;
 
 import Database.ConnectionDB;
 import Model.Content;
-import Model.Date;
-import Model.User;
+import Model.Post;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -52,4 +52,5 @@ public class MediasData {
         sql+=")";
         return getDataQuery(sql);
     }
+
 }

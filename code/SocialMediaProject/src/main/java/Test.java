@@ -1,5 +1,6 @@
 import Database.Data.UsersData;
-import Entity.User;
+import Model.User;
+
 
 public class Test {
 

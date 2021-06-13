@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset = UTF-8" pageEncoding="UTF-8" %>
+<%@page language="java" contentType="text/html; charset = UTF-8" pageEncoding="UTF-8" %>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +17,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/color.css">
     <link rel="stylesheet" href="css/responsive.css">
+
 
 </head>
 <body>
@@ -1551,21 +1553,24 @@
                                         <form action="<%=request.getContextPath()%>/uploadFile" method="post"
                                               enctype="multipart/form-data">
                                             <div class="newpst-input">
-                                                    <textarea rows="2" name="text"
-                                                              placeholder="Hôm nay bạn đang nghĩ gì?"></textarea>
+                                                <textarea name="text" rows="2"
+                                                          placeholder="Hôm nay bạn đang nghĩ gì?" content=""></textarea>
                                             </div>
                                             <div class="attachments">
                                                 <ul>
                                                     <li>
                                                         <i class="fa fa-image"></i>
                                                         <label class="fileContainer">
-                                                            <input type="file" name="images[]" multiple>
+                                                            <input type="file" name="images" id="images" multiple
+                                                                   accept="image/gif, image/jpeg, image/png"
+                                                                   onchange="loadImg(event)">
                                                         </label>
                                                     </li>
                                                     <li>
                                                         <i class="fa fa-video-camera"></i>
                                                         <label class="fileContainer">
-                                                            <input type="file" name="videos[]" multiple>
+                                                            <input type="file" name="videos" id="videos" multiple
+                                                                   accept="video/*" onchange="loadVideo(event)">
                                                         </label>
                                                     </li>
 
@@ -1575,9 +1580,38 @@
                                                         </button>
                                                     </li>
                                                 </ul>
+                                                <ul>
+                                                    <li id="img-list"></li>
+                                                </ul>
+                                                <ul>
+                                                    <li id="video-list"></li>
+                                                </ul>
                                                 <button class="post-btn" type="submit" data-ripple="">Đăng</button>
                                             </div>
                                         </form>
+                                        <script>
+                                            var loadImg = function (event) {
+                                                var images = document.getElementById('images').value;
+                                                for (let i = 0; i < images.length; i++) {
+                                                    var img = document.createElement("img");
+                                                    img.style.width = '250px';
+                                                    img.src = URL.createObjectURL(event.target.files[i]);
+                                                    var imglist = document.getElementById("img-list");
+                                                    imglist.append(img);
+                                                }
+                                            };
+                                            var loadVideo = function (event) {
+                                                var videos = document.getElementById('videos').value;
+                                                for (let i = 0; i < videos.length; i++) {
+                                                    var video = document.createElement("video");
+                                                    video.controls = true;
+                                                    video.style.width = '500px';
+                                                    video.src = URL.createObjectURL(event.target.files[i]);
+                                                    var videolist = document.getElementById("video-list");
+                                                    videolist.append(video);
+                                                }
+                                            };
+                                        </script>
                                         <div class="add-location-post">
                                             <span>Drag map point to selected area</span>
                                             <div class="row">
