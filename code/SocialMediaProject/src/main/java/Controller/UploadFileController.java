@@ -54,6 +54,7 @@ public class UploadFileController extends HttpServlet {
         // sets maximum size of upload file
         upload.setFileSizeMax(MAX_FILE_SIZE);
 
+
         try {
             List<FileItem> fileItems = upload.parseRequest(request);
             for (FileItem fileItem : fileItems) {
@@ -80,7 +81,7 @@ public class UploadFileController extends HttpServlet {
                                     fileItem.write(file);
                                 }
                                 if ("videos".equals(fileItem.getFieldName())) {
-                                    post.content.getImages().add(file.getAbsolutePath());
+                                    post.content.getVideos().add(file.getAbsolutePath());
                                     fileItem.write(file);
                                 }
                             } catch (Exception e) {
