@@ -45,6 +45,7 @@ public class UploadFileController extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         Post post = new Post();
 
         final int MAX_FILE_SIZE = 1024 * 1024 * 40; // 40MB
@@ -65,7 +66,7 @@ public class UploadFileController extends HttpServlet {
                     String nameimg = fileItem.getName();
                     if (!nameimg.equals("")) {
                         String dirUrl = request.getServletContext()
-                                .getRealPath("") + File.separator + "files";
+                                .getRealPath("") + File.separator + "files"; //mà sao có chữ "files"
                         File dir = new File(dirUrl);
                         if (!dir.exists()) {
                             dir.mkdir();
@@ -80,7 +81,7 @@ public class UploadFileController extends HttpServlet {
                                     fileItem.write(file);
                                 }
                                 if ("videos".equals(fileItem.getFieldName())) {
-                                    post.content.getImages().add(file.getAbsolutePath());
+                                    post.content.getVideos().add(file.getAbsolutePath());
                                     fileItem.write(file);
                                 }
                             } catch (Exception e) {

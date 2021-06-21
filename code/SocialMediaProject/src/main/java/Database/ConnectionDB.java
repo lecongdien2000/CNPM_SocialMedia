@@ -34,4 +34,26 @@ public class ConnectionDB {
             connection.close();
     }
 
+    public void laydulieu(){
+        try {
+            Statement statement = ConnectionDB.connect();
+            String sql="Select user.fullname, post.text, post.dateCreated, media.mediaPath from post,media,user where post.postID=media.postID and post.userID=user.userID";
+            ResultSet resultSet = statement.executeQuery(sql);
+            while(resultSet.next()){
+                String fname =resultSet.getString("fullname");
+                String text = resultSet.getString("text");
+                String mediapath = resultSet.getString("mediaPath");
+                String datecreated = resultSet.getString("dateCreated");
+                System.out.println("name" + fname + "text" + text + "link" + mediapath + "date" + datecreated);
+
+            }
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+
 }
