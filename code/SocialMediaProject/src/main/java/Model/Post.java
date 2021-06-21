@@ -24,7 +24,7 @@ public class Post implements IPost {
 
 
 
-    public void createPost(String text, List<String> listPicture, List<String> listVideo, String user) {
+    public void createPost(String text, List<String> listPicture, List<String> listVideo, User user) {
         // TODO implement here
     }
     public void createPost(String text, Post post) {
