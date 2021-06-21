@@ -18,6 +18,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 @WebServlet(urlPatterns = "/uploadFile")
 public class UploadFileController extends HttpServlet {
@@ -55,18 +56,38 @@ public class UploadFileController extends HttpServlet {
         upload.setFileSizeMax(MAX_FILE_SIZE);
 
 
+        /*
+        1.lấy đường dẫn thư mục UploadFileController
+        2.đưa vào stringtokenizer
+        3.tạo biến lưu trữ
+        4.kiểm tra giá trị và thêm vào biến lưu trữ
+        5.thêm các thành phần phụ tạo thành đường dẫn, nơi mà lưu ảnh được upload
+         */
+
+        String root = getServletContext().getRealPath("/");
+        StringTokenizer tokenizer=new StringTokenizer(root,"\\");
+        String token="";
+        String dirUrl="";
+        while(tokenizer.hasMoreElements()){
+            if (!"SocialMediaProject".equalsIgnoreCase(token=tokenizer.nextToken())){
+                dirUrl+=token+"\\";
+            }else{
+                dirUrl+=token+"\\src\\main\\webapp\\posts";
+                break;
+            }
+        }
+
         try {
             List<FileItem> fileItems = upload.parseRequest(request);
-            for (FileItem fileItem : fileItems) {
+            for (FileItem fileItem : fileItems) { //fileItem: ảnh được up lên được lưu với dạng FileItem
                 if ("text".equals(fileItem.getFieldName())) {
                     post.content.setText(fileItem.getString());
                 }
                 if (!fileItem.isFormField() && fileItems.size() > 0) {
                     // xử lý file
                     String nameimg = fileItem.getName();
+
                     if (!nameimg.equals("")) {
-                        String dirUrl = request.getServletContext()
-                                .getRealPath("") + File.separator + "files";
                         File dir = new File(dirUrl);
                         if (!dir.exists()) {
                             dir.mkdir();
@@ -74,14 +95,13 @@ public class UploadFileController extends HttpServlet {
                         String fileImg = dirUrl + File.separator + nameimg;
                         File file = new File(fileImg);
                         if (fileItem.getSize() <= upload.getFileSizeMax()) {
-
                             try {
                                 if ("images".equals(fileItem.getFieldName())) {
-                                    post.content.getImages().add(file.getAbsolutePath());
+                                    post.content.getImages().add("posts"+ File.separator+nameimg);
                                     fileItem.write(file);
                                 }
                                 if ("videos".equals(fileItem.getFieldName())) {
-                                    post.content.getVideos().add(file.getAbsolutePath());
+                                    post.content.getVideos().add("posts/"+ File.separator+nameimg);
                                     fileItem.write(file);
                                 }
                             } catch (Exception e) {
