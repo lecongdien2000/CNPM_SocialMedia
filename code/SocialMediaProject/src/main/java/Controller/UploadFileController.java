@@ -52,30 +52,7 @@ public class UploadFileController extends HttpServlet {
         DiskFileItemFactory fileItemFactory = new DiskFileItemFactory();
         ServletFileUpload upload = new ServletFileUpload(fileItemFactory);
 
-        // sets maximum size of upload file
         upload.setFileSizeMax(MAX_FILE_SIZE);
-
-
-        /*
-        1.lấy đường dẫn thư mục UploadFileController
-        2.đưa vào stringtokenizer
-        3.tạo biến lưu trữ
-        4.kiểm tra giá trị và thêm vào biến lưu trữ
-        5.thêm các thành phần phụ tạo thành đường dẫn, nơi mà lưu ảnh được upload
-         */
-
-        String root = getServletContext().getRealPath("/");
-        StringTokenizer tokenizer=new StringTokenizer(root,"\\");
-        String token="";
-        String dirUrl="";
-        while(tokenizer.hasMoreElements()){
-            if (!"SocialMediaProject".equalsIgnoreCase(token=tokenizer.nextToken())){
-                dirUrl+=token+"\\";
-            }else{
-                dirUrl+=token+"\\src\\main\\webapp\\posts";
-                break;
-            }
-        }
 
         try {
             List<FileItem> fileItems = upload.parseRequest(request);
@@ -86,23 +63,14 @@ public class UploadFileController extends HttpServlet {
                 if (!fileItem.isFormField() && fileItems.size() > 0) {
                     // xử lý file
                     String nameimg = fileItem.getName();
-
                     if (!nameimg.equals("")) {
-                        File dir = new File(dirUrl);
-                        if (!dir.exists()) {
-                            dir.mkdir();
-                        }
-                        String fileImg = dirUrl + File.separator + nameimg;
-                        File file = new File(fileImg);
                         if (fileItem.getSize() <= upload.getFileSizeMax()) {
                             try {
                                 if ("images".equals(fileItem.getFieldName())) {
-                                    post.content.getImages().add("posts"+ File.separator+nameimg);
-                                    fileItem.write(file);
+                                    post.content.getImages().add("posts/"+nameimg);
                                 }
                                 if ("videos".equals(fileItem.getFieldName())) {
-                                    post.content.getVideos().add("posts/"+ File.separator+nameimg);
-                                    fileItem.write(file);
+                                    post.content.getVideos().add("posts/"+nameimg);
                                 }
                             } catch (Exception e) {
                                 System.out
