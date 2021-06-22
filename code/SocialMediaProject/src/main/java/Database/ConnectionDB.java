@@ -8,7 +8,7 @@ public class ConnectionDB {
     final static String DATABASE_NAME = "database_social";
     final static String USERNAME = "root";
     final static String PASSWORD = "";
-    static String url = "jdbc:mysql://"+HOST_NAME+":"+PORT+"/"+DATABASE_NAME+"?useUnicode=true&characterEncoding=utf-8";
+    static String url = "jdbc:mysql://"+HOST_NAME+":"+PORT+"/"+DATABASE_NAME+"?useUnicode=true&characterEncoding=utf-16";
     static Connection connection;
 
     public static Statement connect() throws ClassNotFoundException, SQLException {
