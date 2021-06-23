@@ -53,7 +53,7 @@ public class UploadFileController extends HttpServlet {
         ServletFileUpload upload = new ServletFileUpload(fileItemFactory);
 
         upload.setFileSizeMax(MAX_FILE_SIZE);
-
+        String s = request.getParameter("text");
         try {
             List<FileItem> fileItems = upload.parseRequest(request);
             for (FileItem fileItem : fileItems) { //fileItem: ảnh được up lên được lưu với dạng FileItem
@@ -67,10 +67,10 @@ public class UploadFileController extends HttpServlet {
                         if (fileItem.getSize() <= upload.getFileSizeMax()) {
                             try {
                                 if ("images".equals(fileItem.getFieldName())) {
-                                    post.content.getImages().add("posts/"+nameimg);
+                                    post.content.getImages().add("posts/" + nameimg);
                                 }
                                 if ("videos".equals(fileItem.getFieldName())) {
-                                    post.content.getVideos().add("posts/"+nameimg);
+                                    post.content.getVideos().add("posts/" + nameimg);
                                 }
                             } catch (Exception e) {
                                 System.out
