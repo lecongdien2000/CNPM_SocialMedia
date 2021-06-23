@@ -1785,7 +1785,7 @@
                                     <%
                                         Controller controller = new Controller();
                                         ArrayList<PostCreated> list = controller.laydulieu();
-                                        for (int i=0;i <list.size();i++){
+                                        for (int i=list.size() - 1;i >=0;i--){
 
 
 

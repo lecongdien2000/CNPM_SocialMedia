@@ -47,7 +47,7 @@ public class UploadFileController extends HttpServlet {
                           HttpServletResponse response) throws ServletException, IOException {
         Post post = new Post();
 
-        final int MAX_FILE_SIZE = 1024 * 1024 * 40; // 40MB
+        final int MAX_FILE_SIZE = 1024 * 1024 * 50; // 40MB
         DiskFileItemFactory fileItemFactory = new DiskFileItemFactory();
         ServletFileUpload upload = new ServletFileUpload(fileItemFactory);
 
