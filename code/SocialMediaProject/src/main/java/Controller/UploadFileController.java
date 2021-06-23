@@ -67,21 +67,23 @@ public class UploadFileController extends HttpServlet {
                     if (!nameimg.equals("")) {
                         String dirUrl = request.getServletContext()
                                 .getRealPath("") + File.separator + "files";
+                        dirUrl = request.getServletContext().getRealPath("") + "images/posts";// Dien Test
                         File dir = new File(dirUrl);
                         if (!dir.exists()) {
                             dir.mkdir();
                         }
                         String fileImg = dirUrl + File.separator + nameimg;
+                        fileImg = dirUrl + "/" + nameimg; // Dien Test
                         File file = new File(fileImg);
                         if (fileItem.getSize() <= upload.getFileSizeMax()) {
 
                             try {
                                 if ("images".equals(fileItem.getFieldName())) {
-                                    post.content.getImages().add(file.getAbsolutePath());
+                                    post.content.getImages().add("images/posts/" + file.getName());
                                     fileItem.write(file);
                                 }
                                 if ("videos".equals(fileItem.getFieldName())) {
-                                    post.content.getVideos().add(file.getAbsolutePath());
+                                    post.content.getVideos().add("images/posts/" + file.getName());
                                     fileItem.write(file);
                                 }
                             } catch (Exception e) {
