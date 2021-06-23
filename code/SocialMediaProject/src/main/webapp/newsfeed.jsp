@@ -1837,8 +1837,6 @@
                                                                        data-strip-group="mygroup"
                                                                        data-strip-group-options="loop: false">
                                                                         <img src="<%=list.get(i).getMediapath()%>"
-                                                                             alt="" style="height: 100px">
-                                                                        <img src="images/resources/album6.jpg"
                                                                              alt="">
                                                                     </a>
                                                                 </figure>
