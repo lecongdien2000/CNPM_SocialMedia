@@ -1,7 +1,12 @@
 package Controller;
 import Database.ConnectionDB;
-import Model.PostCreated;
+import Database.Data.PostsData;
+import Model.Post;
+import org.apache.commons.io.FileUtils;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -86,26 +91,25 @@ public class Controller {
         // TODO implement here
     }
 
-    public ArrayList<PostCreated> laydulieu(){
-        ArrayList<PostCreated> listarr = new ArrayList<PostCreated>();
-        try {
-            Statement statement = ConnectionDB.connect();
-            String sql="Select user.fullname, post.text, post.dateCreated, media.mediaPath from post,media,user where post.postID=media.postID and post.userID=user.userID";
-            ResultSet resultSet = statement.executeQuery(sql);
-            while(resultSet.next()){
-                String fname =resultSet.getString("fullname");
-                String text = resultSet.getString("text");
-                String mediapath = resultSet.getString("mediaPath");
-                String datecreated = resultSet.getString("dateCreated");
-                PostCreated postCreated  = new PostCreated(fname,text,mediapath,datecreated);
-                listarr.add(postCreated);
+
+
+    public List<Post> laydulieu(HttpServletRequest request){
+        List<Post> posts = PostsData.getAllPost();
+        for(Post post: posts){
+            List<String> medias = new ArrayList<>();
+            medias.addAll(post.content.images);
+            medias.addAll(post.content.videos);
+            for(String mediaPath: medias){
+                File file = new File(request.getServletContext().getRealPath("") + "/images/posts");
+                if(!file.exists()) file.mkdirs();
+                String desPath = request.getServletContext().getRealPath("") + mediaPath;
+                file = new File(desPath);
+                if(!file.exists())
+                    PostsData.getData(mediaPath, desPath);
             }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
         }
-        return  listarr;
+
+         return  PostsData.getAllPost();
     }
 
 

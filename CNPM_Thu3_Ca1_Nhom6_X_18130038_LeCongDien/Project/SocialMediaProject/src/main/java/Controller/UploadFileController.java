@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +38,8 @@ public class UploadFileController extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request,
                          HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
         doPost(request, response);
     }
 
@@ -45,7 +49,11 @@ public class UploadFileController extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
         Post post = new Post();
+
+
 
         final int MAX_FILE_SIZE = 1024 * 1024 * 40; // 40MB
         DiskFileItemFactory fileItemFactory = new DiskFileItemFactory();
@@ -54,37 +62,41 @@ public class UploadFileController extends HttpServlet {
         // sets maximum size of upload file
         upload.setFileSizeMax(MAX_FILE_SIZE);
 
-
         try {
             List<FileItem> fileItems = upload.parseRequest(request);
             for (FileItem fileItem : fileItems) {
                 if ("text".equals(fileItem.getFieldName())) {
-                    post.content.setText(fileItem.getString());
+                    String text = fileItem.getString();
+                    text = new String (text.getBytes (StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
+                    post.content.setText(text);
                 }
                 if (!fileItem.isFormField() && fileItems.size() > 0) {
                     // xử lý file
                     String nameimg = fileItem.getName();
                     if (!nameimg.equals("")) {
-                        String dirUrl = request.getServletContext()
-                                .getRealPath("") + File.separator + "files";
-                        dirUrl = request.getServletContext().getRealPath("") + "images/posts";// Dien Test
+                        String dirUrl = request.getServletContext().getRealPath("") + "/images/posts";
+
                         File dir = new File(dirUrl);
                         if (!dir.exists()) {
-                            dir.mkdir();
+                            dir.mkdirs();
                         }
-                        String fileImg = dirUrl + File.separator + nameimg;
-                        fileImg = dirUrl + "/" + nameimg; // Dien Test
-                        File file = new File(fileImg);
+                        String fileImgUrl = dirUrl + "/" + nameimg;
+                        File file = new File(fileImgUrl);
                         if (fileItem.getSize() <= upload.getFileSizeMax()) {
 
                             try {
                                 if ("images".equals(fileItem.getFieldName())) {
-                                    post.content.getImages().add("images/posts/" + file.getName());
+                                    String dbPath = "images/posts/" + file.getName();
+                                    post.content.getImages().add(dbPath);
                                     fileItem.write(file);
+                                    PostsData.saveData(dbPath, file.getAbsolutePath());
+
                                 }
                                 if ("videos".equals(fileItem.getFieldName())) {
-                                    post.content.getVideos().add("images/posts/" + file.getName());
+                                    String dbPath = "images/posts/" + file.getName();
+                                    post.content.getVideos().add(dbPath);
                                     fileItem.write(file);
+                                    PostsData.saveData(dbPath, file.getAbsolutePath());
                                 }
                             } catch (Exception e) {
                                 System.out
@@ -103,7 +115,7 @@ public class UploadFileController extends HttpServlet {
 
         PostsData.insertPost(post);
 
-        request.getRequestDispatcher("/newsfeed.jsp").forward(request, response);
+        request.getRequestDispatcher("/index.jsp").forward(request, response);
     }
 
 }

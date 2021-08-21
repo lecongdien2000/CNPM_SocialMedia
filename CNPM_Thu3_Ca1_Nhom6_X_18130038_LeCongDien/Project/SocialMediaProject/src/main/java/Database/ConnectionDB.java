@@ -3,30 +3,38 @@ package Database;
 import java.sql.*;
 
 public class ConnectionDB {
-    final static String HOST_NAME = "localhost";
+    final static String HOST_NAME = "remotemysql.com";
     final static String PORT = "3306";
-    final static String DATABASE_NAME = "database_social";
-    final static String USERNAME = "root";
-    final static String PASSWORD = "";
-    static String url = "jdbc:mysql://"+HOST_NAME+":"+PORT+"/"+DATABASE_NAME+"?useUnicode=true&characterEncoding=utf-8";
+    final static String DATABASE_NAME = "ckpO7pCTY8";
+    final static String USERNAME = "ckpO7pCTY8";
+    final static String PASSWORD = "lySzNZnzIV";
+
+//    final static String HOST_NAME = "localhost";
+//    final static String PORT = "3306";
+//    final static String DATABASE_NAME = "database_social";
+//    final static String USERNAME = "root";
+//    final static String PASSWORD = "";
+
+
+    static String url = "jdbc:mysql://"+HOST_NAME+":"+PORT+"/"+DATABASE_NAME+"?useUnicode=true&characterEncoding=utf-8&autoReconnect=true";
     static Connection connection;
 
     public static Statement connect() throws ClassNotFoundException, SQLException {
         if (connection == null || connection.isClosed()) {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(url,
                     USERNAME, PASSWORD);
         }
-        return connection.createStatement();
+        return connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
     }
 
     public static PreparedStatement connect(String sql) throws ClassNotFoundException, SQLException {
         if (connection == null || connection.isClosed()) {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(url,
                     USERNAME, PASSWORD);
         }
-        return connection.prepareStatement(sql);
+        return connection.prepareStatement(sql,ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
     }
 
     public static void closeConnection() throws SQLException {
